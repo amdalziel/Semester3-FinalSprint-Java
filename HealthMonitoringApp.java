@@ -36,8 +36,11 @@ public class HealthMonitoringApp {
 
         List<User> userList = new ArrayList<>();
 
-        User user1 = new User(4,"Amy", "Malik","qmalik@gmail.com", "guggu", false);
+        User user1 = new User(1,"Amy", "Malik","qmalik@gmail.com", "guggu", false);
         userList.add(user1);
+
+        User user2 = new User(2,"Amy", "Dalziel","amy@gmail.com", "amy", false);
+        userList.add(user2);
 
         for (User users : userList) {
             userDao.createUser(users);

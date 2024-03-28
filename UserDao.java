@@ -26,7 +26,6 @@ public class UserDao {
             statement.setString(4,u.getEmail());
             statement.setString(5, hashedPassword);
             statement.setBoolean(6,u.getIsDoctor());
-            int updateRow = statement.executeUpdate();
 
             int updatedRows = statement.executeUpdate();
             if (updatedRows != 0) {
