@@ -3,7 +3,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.sql.*;
 
 public class UserDao {
-   /*
+   
     public boolean createUser(User user) {
         // insert user into database 
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
@@ -44,5 +44,5 @@ public class UserDao {
 //        String query = "SELECT password FROM users WHERE email = ?";    // SQL Statement
         //Implement logic to retrieve password using the Bcrypt
     }
-*/
+
 }

@@ -1,4 +1,4 @@
-
+// WORKING
 
 public class User {
     private int id;
@@ -8,8 +8,17 @@ public class User {
     private String password;
     private boolean isDoctor;
 
+    public User() {
+        this.id = -1; 
+        this.firstName = null;
+        this.lastName = null;
+        this.email = null;
+        this.password = null;
+        this.isDoctor = false;
+    }
+
     public User(int id, String firstName, String lastName, String email, String password, boolean isDoctor) {
-        this.id = id;
+        this.id = id; 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -57,11 +66,11 @@ public class User {
         this.password = p;
     }
 
-    public boolean isDoctor() {
+    public boolean getIsDoctor() {
         return this.isDoctor;
     }
 
-    public void setDoctor(boolean d) {
+    public void setIsDoctor(boolean d) {
         isDoctor = d;
     }
 

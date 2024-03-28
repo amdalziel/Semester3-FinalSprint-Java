@@ -1,14 +1,14 @@
-// package com.keyin.client;
+// WORKING
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    // private static final String url = "jdbc:postgresql://localhost:5432/APJavaFinalSprint";
-    private static final String url = "jdbc:postgresql://localhost:5432/apjavafinalsprint";
+
+    private static final String url = "jdbc:postgresql://localhost:5433/SmartHealthMonitoringSystem";
     private static final String user = "postgres";
-    private static final String password = "password";
+    private static final String password = "KeyinSem3!";
 
     public static Connection getCon(){
         Connection connection = null;
