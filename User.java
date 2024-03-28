@@ -18,51 +18,56 @@ public class User {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int i) {
+        this.id = i;
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String fn) {
+        this.firstName = fn;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String ln) {
+        this.lastName = ln;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String e) {
+        this.email = e;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String p) {
+        this.password = p;
     }
 
     public boolean isDoctor() {
-        return isDoctor;
+        return this.isDoctor;
     }
 
-    public void setDoctor(boolean doctor) {
-        isDoctor = doctor;
+    public void setDoctor(boolean d) {
+        isDoctor = d;
+    }
+
+    public String toString()
+    {
+        return ("User " + this.id + ":" + this.firstName + " " + this.lastName + ", Email: " + this.email); 
     }
 
    
