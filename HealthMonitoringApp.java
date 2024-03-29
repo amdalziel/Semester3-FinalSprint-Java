@@ -39,20 +39,35 @@ public class HealthMonitoringApp {
         // User user1 = new User(3,"Luke", "Tobin","luke@gmail.com", "luke", false);
         // userList.add(user1);
 
-        // User user2 = new User(4,"Josh", "Tobin","josh@gmail.com", "jjj", true);
+        // User user2 = new User(5,"Amelia", "Tobin","a@gmail.com", "aaa", true);
         // userList.add(user2);
 
         // for (User users : userList) {
         //     userDao.createUser(users);
         // }
 
-        System.out.println(userDao.getUserById(3)); 
+        // System.out.println(userDao.getUserById(3)); 
 
-        System.out.println(); 
+        // System.out.println(); 
 
-        System.out.println(userDao.getUserByEmail("amy@gmail.com")); 
+        // System.out.println(userDao.getUserByEmail("amy@gmail.com")); 
 
-        System.out.println(userDao.deleteUser(2)); 
+        // System.out.println(userDao.deleteUser(2)); 
+
+        DoctorPortalDao docDao = new DoctorPortalDao(); 
+
+        Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
+
+        docDao.createDoctor(doc3); 
+
+        PatientPortalDao patDao = new PatientPortalDao(); 
+
+        Patient p = new Patient(10, "Chris", "McPhee", "chris@email.com", "chris", false); 
+
+        patDao.createPatient(p); 
+
+
+        // System.out.print(docDao.getDoctorById(5)); 
     }
 
 
