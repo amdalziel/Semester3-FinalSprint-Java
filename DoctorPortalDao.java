@@ -13,8 +13,6 @@ public class DoctorPortalDao {
     private UserDao userDao;
     private HealthDataDao healthDataDao;
 
-   // Complete all these methods and add more as needed
-
 
     public DoctorPortalDao() {
         userDao = new UserDao();
@@ -50,7 +48,7 @@ public class DoctorPortalDao {
             int updatedRows = statement.executeUpdate();
             if (updatedRows != 0) {
                 
-                String doctorPatientQuery = "INSERT INTO public.doctor_patient(doctor_id, patient_id) VALUES (?, ?)";
+            String doctorPatientQuery = "INSERT INTO public.doctor_patient(doctor_id, patient_id) VALUES (?, ?)";
             PreparedStatement doctorPatientStatement = con.prepareStatement(doctorPatientQuery);
             doctorPatientStatement.setInt(1, d.getId());
             doctorPatientStatement.setInt(2, 1); 
@@ -119,6 +117,54 @@ public class DoctorPortalDao {
     // public List<HealthData> getHealthDataByPatientId(int patientId) {
     //     // Implement this method
     // }
+
+
+    public Boolean addPatientToDoctorList(Doctor d, Patient p)
+    {
+        Boolean bool = false; 
+
+
+        // Prepare the SQL query
+        String query = " INSERT INTO public.doctor_patient(doctor_id, patient_id) VALUES (?, ?)";
+
+        // Database logic to insert data using PREPARED Statement
+        try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+
+            statement.setInt(1,d.getId());
+            statement.setInt(2,p.getId());
+  
+
+            int updatedRows = statement.executeUpdate();
+            if (updatedRows != 0) {
+
+            String userQuery = "UPDATE public.users\n" + //
+                                "\tSET doctor_id= ?\n" + //
+                                "\tWHERE id= ?;";
+            PreparedStatement userUpdateStatement = con.prepareStatement(userQuery);
+            userUpdateStatement.setInt(1, d.getId());
+            userUpdateStatement.setInt(2, p.getId()); 
+            userUpdateStatement.executeUpdate(); 
+
+            bool = true;
+        }
+    } catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return bool; 
+    }
+
+    public Boolean deletePatientFromDoctorList()
+    {
+        Boolean bool = false; 
+
+
+
+        return bool; 
+    }
 
     // Add more methods for other doctor-specific tasks
  

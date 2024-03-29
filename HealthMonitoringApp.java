@@ -66,6 +66,8 @@ public class HealthMonitoringApp {
 
         patDao.createPatient(p); 
 
+        docDao.addPatientToDoctorList(doc3, p); 
+
 
         // System.out.print(docDao.getDoctorById(5)); 
     }
