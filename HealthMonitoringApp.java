@@ -51,6 +51,8 @@ public class HealthMonitoringApp {
         System.out.println(); 
 
         System.out.println(userDao.getUserByEmail("amy@gmail.com")); 
+
+        System.out.println(userDao.deleteUser(2)); 
     }
 
 

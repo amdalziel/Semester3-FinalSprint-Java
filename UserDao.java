@@ -125,14 +125,39 @@ public class UserDao {
     }
 
 
-//     public boolean updateUser(User user) {
-//         // Prepare the SQL query
-//         // Database logic to get update user Using Prepared Statement
-//     }
-//     public boolean deleteUser(int id) { // delete user from the database 
-//         // Prepare the SQL query
-//         // Database logic to delete user
-//     }
+    // public boolean updateUser(User user) {
+    //     // Prepare the SQL query
+    //     // Database logic to get update user Using Prepared Statement
+    // }
+
+
+    public boolean deleteUser(int id) { 
+
+        boolean bool = false; 
+
+        // Prepare the SQL query
+
+        String query = " DELETE FROM public.users\n" + //
+                        "\tWHERE id=" + id +"; ";
+
+        
+        // Database logic to delete user
+
+        try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated != 0){
+                bool = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bool; 
+    }
+
 
 //     public boolean verifyPassword (String email, String password)
 //     {
