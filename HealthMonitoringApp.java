@@ -34,17 +34,19 @@ public class HealthMonitoringApp {
         //test doctor portal (call testDoctorPortal() here)
 
 
-        List<User> userList = new ArrayList<>();
+        // List<User> userList = new ArrayList<>();
 
-        User user1 = new User(1,"Amy", "Malik","qmalik@gmail.com", "guggu", false);
-        userList.add(user1);
+        // User user1 = new User(3,"Luke", "Tobin","luke@gmail.com", "luke", false);
+        // userList.add(user1);
 
-        User user2 = new User(2,"Amy", "Dalziel","amy@gmail.com", "amy", false);
-        userList.add(user2);
+        // User user2 = new User(4,"Josh", "Tobin","josh@gmail.com", "jjj", true);
+        // userList.add(user2);
 
-        for (User users : userList) {
-            userDao.createUser(users);
-        }
+        // for (User users : userList) {
+        //     userDao.createUser(users);
+        // }
+
+        System.out.println(userDao.getUserById(3)); 
     }
 
 
