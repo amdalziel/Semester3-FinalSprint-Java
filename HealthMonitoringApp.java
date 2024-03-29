@@ -47,6 +47,10 @@ public class HealthMonitoringApp {
         // }
 
         System.out.println(userDao.getUserById(3)); 
+
+        System.out.println(); 
+
+        System.out.println(userDao.getUserByEmail("amy@gmail.com")); 
     }
 
 
