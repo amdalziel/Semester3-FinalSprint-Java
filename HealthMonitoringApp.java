@@ -3,6 +3,7 @@
 // import com.DataBaseConnection;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,13 @@ public class HealthMonitoringApp {
 
       MedicineReminderManager mrManager = new MedicineReminderManager(); 
 
-      System.out.println(mrManager.getRemindersForUser(3)); 
+    //   System.out.println(mrManager.getRemindersForUser(3)); 
+
+    //   System.out.println(mrManager.getDueRemindersForUser(3)); 
+
+    //   MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
+
+    //   mrManager.addReminder(m1); 
 
       System.out.println(mrManager.getDueRemindersForUser(3)); 
 

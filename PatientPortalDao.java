@@ -40,7 +40,7 @@ public class PatientPortalDao {
             statement.setString(3,p.getLastName());
             statement.setString(4,p.getEmail());
             statement.setString(5, hashedPassword);
-            statement.setBoolean(6,p.getIsDoctor());
+            statement.setBoolean(6,false);
             statement.setInt(7, p.getDoctorId()); 
     
 

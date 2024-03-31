@@ -6,7 +6,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private boolean isDoctor;
 
     public User() {
         this.id = -1; 
@@ -14,16 +13,14 @@ public class User {
         this.lastName = null;
         this.email = null;
         this.password = null;
-        this.isDoctor = false;
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, boolean isDoctor) {
+    public User(int id, String firstName, String lastName, String email, String password) {
         this.id = id; 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.isDoctor = isDoctor;
     }
 
     public int getId() {
@@ -64,14 +61,6 @@ public class User {
 
     public void setPassword(String p) {
         this.password = p;
-    }
-
-    public boolean getIsDoctor() {
-        return this.isDoctor;
-    }
-
-    public void setIsDoctor(boolean d) {
-        isDoctor = d;
     }
 
     public String toString()

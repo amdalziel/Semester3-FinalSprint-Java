@@ -41,7 +41,7 @@ public class DoctorPortalDao {
             statement.setString(3,d.getLastName());
             statement.setString(4,d.getEmail());
             statement.setString(5, hashedPassword);
-            statement.setBoolean(6,d.getIsDoctor());
+            statement.setBoolean(6,true);
             statement.setString(7, d.getSpecialization());
             statement.setString(8,d.getMedicalLicenseNumber());
 

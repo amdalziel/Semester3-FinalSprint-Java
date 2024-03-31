@@ -25,7 +25,6 @@ public class UserDao {
             statement.setString(3,u.getLastName());
             statement.setString(4,u.getEmail());
             statement.setString(5, hashedPassword);
-            statement.setBoolean(6,u.getIsDoctor());
 
             int updatedRows = statement.executeUpdate();
             if (updatedRows != 0) {
@@ -77,7 +76,7 @@ public class UserDao {
         }
 
 
-        return new User(user_id, firstName, lastName, email, password, is_doctor);
+        return new User(user_id, firstName, lastName, email, password);
 
     }
 
@@ -120,7 +119,7 @@ public class UserDao {
         }
 
 
-        return new User(user_id, firstName, lastName, email, password, is_doctor);
+        return new User(user_id, firstName, lastName, email, password);
 
     }
 

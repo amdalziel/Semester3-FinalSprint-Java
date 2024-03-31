@@ -7,16 +7,30 @@ import java.util.ArrayList;
 import java.sql.*;
 
 public class Doctor extends User{
+
+    Boolean isDoctor; 
+
     private String medicalLicenseNumber;
     private String specialization;
     private ArrayList<Patient> patientList; 
 
-    public Doctor(int id, String firstName, String lastName, String email, String password, boolean isDoctor, String spec, String medLN) {
-        super(id, firstName, lastName, email, password, isDoctor);
+    public Doctor(int id, String firstName, String lastName, String email, String password, String spec, String medLN) {
+        super(id, firstName, lastName, email, password);
         this.specialization = spec;
         this.medicalLicenseNumber = medLN;
+        this.isDoctor = true; 
 
     }
+
+
+    public boolean getIsDoctor() {
+        return this.isDoctor;
+    }
+
+    public void setIsDoctor(boolean d) {
+        isDoctor = d;
+    }
+    
 
     public String getMedicalLicenseNumber()
     {

@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The MedicineReminderManager class should have methods to add reminders, get reminders
- *  1. for a specific user, and
- *  2. get reminders that are DUE for a specific user.
- *
+ * The MedicineReminderManager class should have methods to add reminders,
+ * 
  *  You'll need to integrate this class with your application and database logic to
  *  1. store,
  *  2. update, and
@@ -29,14 +27,39 @@ public class MedicineReminderManager {
         this.reminders = new ArrayList<>();
     }
 
-    // public void addReminder(MedicineReminder r) {
+    public Boolean addReminder(MedicineReminder r) {
 
-    // //     INSERT INTO public.health_data(
-	// // user_id, weight, height, steps, heart_rate, date)
-	// // VALUES (3, 24.5, 55.00, 2500, 135, TO_DATE('2024-05-10', 'YYYY-MM-DD'));
+        Boolean bool = false; 
 
-    //     reminders.add(r);
-    // }
+         // Prepare the SQL query
+         String query = "INSERT INTO public.medicine_reminders(\n" + //
+                          "\tid, user_id, medicine_name, dosage, schedule, start_date, end_date)\n" + //
+                          "\tVALUES (?, ?, ?, ?, ?, ?, ?);";
+ 
+         // Database logic to insert data using PREPARED Statement
+         try{
+             Connection con = DatabaseConnection.getCon();
+             PreparedStatement statement = con.prepareStatement(query);
+             statement.setInt(1,r.getId());
+             statement.setInt(2,r.getUserId());
+             statement.setString(3,r.getMedicineName());
+             statement.setString(4,r.getDosage());
+             statement.setString(5,r.getSchedule());
+             statement.setDate(6, java.sql.Date.valueOf(r.getStartDate()));
+             statement.setDate(7,java.sql.Date.valueOf(r.getEndDate()));
+ 
+             int updatedRows = statement.executeUpdate();
+             if (updatedRows != 0) {
+                 bool = true;
+         }
+     } catch(SQLException e)
+         {
+             e.printStackTrace();
+         }
+ 
+         return bool; 
+
+    }
 
     public List<MedicineReminder> getRemindersForUser(int uId) {
 
@@ -83,6 +106,9 @@ public class MedicineReminderManager {
 
         return userReminders;
     }
+
+
+    // Add enumeration - different values depending on how overdue it is?? 
 
     public List<MedicineReminder> getDueRemindersForUser(int uId) {
 
