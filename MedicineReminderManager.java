@@ -22,6 +22,7 @@ import java.util.List;
  */
 
 public class MedicineReminderManager {
+
     private List<MedicineReminder> reminders;
 
     public MedicineReminderManager() {
@@ -38,7 +39,7 @@ public class MedicineReminderManager {
     // }
 
     public List<MedicineReminder> getRemindersForUser(int uId) {
-        
+
         List<MedicineReminder> userReminders = new ArrayList<>();
 
         int id = 0;
@@ -83,12 +84,52 @@ public class MedicineReminderManager {
         return userReminders;
     }
 
-    public List<MedicineReminder> getDueReminders(int userId) {
+    public List<MedicineReminder> getDueRemindersForUser(int uId) {
+
         List<MedicineReminder> dueReminders = new ArrayList<>();
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Write your logic here
+        int id = 0;
+        int user_id = uId;
+        String medicineName = null;
+        String dos = null;
+        String sch = null;
+        LocalDate startD = null;
+        LocalDate endD = null;
+
+
+      String query = "SELECT id, user_id, medicine_name, dosage, schedule, start_date, end_date\n" + //
+                    "\tFROM public.medicine_reminders\n" + //
+                    "\tWHERE user_id = ? AND end_date <= ?;"; 
+
+       // Database logic to insert data using PREPARED Statement
+        try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, uId);
+            statement.setObject(2, now); // fix this bug 
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+                user_id = rs.getInt("user_id");
+                medicineName = rs.getString("medicine_name");
+                dos = rs.getString("dosage");
+                sch = rs.getString("schedule");
+                startD = rs.getDate("start_date").toLocalDate();
+                endD = rs.getDate("end_date").toLocalDate();
+
+                MedicineReminder reminder = new MedicineReminder(id, user_id, medicineName, dos, sch, startD, endD);
+                dueReminders.add(reminder);
+            }
+
+    } catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
 
         return dueReminders;
     }

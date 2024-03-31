@@ -73,6 +73,9 @@ public class HealthMonitoringApp {
 
       System.out.println(mrManager.getRemindersForUser(3)); 
 
+      System.out.println(mrManager.getDueRemindersForUser(3)); 
+
+
 
         // System.out.print(docDao.getDoctorById(5)); 
     }
