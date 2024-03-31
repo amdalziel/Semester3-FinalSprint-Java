@@ -52,7 +52,7 @@ public class UserDao {
         // Prepare the SQL query
         String query = " SELECT id, first_name, last_name, email, is_doctor\n" + //
                         "\tFROM public.users\n" + //
-                        "\tWHERE id=" + id + "; ";
+                        "\tWHERE id= ?; ";
 
 
         // Database logic to get data by ID Using Prepared Statement
@@ -95,7 +95,7 @@ public class UserDao {
         // Prepare the SQL query
         String query = " SELECT id, first_name, last_name, email, is_doctor\n" + //
                         "\tFROM public.users\n" + //
-                        "\tWHERE email='" + e + "'; ";
+                        "\tWHERE email= ?; ";
 
 
         // Database logic to get data by email Using Prepared Statement
@@ -159,10 +159,32 @@ public class UserDao {
     }
 
 
-//     public boolean verifyPassword (String email, String password)
-//     {
-// //        String query = "SELECT password FROM users WHERE email = ?";    // SQL Statement
-//         //Implement logic to retrieve password using the Bcrypt
-//     }
+    public boolean verifyPassword (int id, String p)
+    {
+        boolean bool = false;
+        String query = "SELECT password\n" + //
+                        "\tFROM public.users\n" + //
+                        "\tWHERE id = ?;";
 
-}
+        //Implement logic to retrieve password using the Bcrypt
+        try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            String hashedPassword = null;
+            while (rs.next()) {
+                hashedPassword = rs.getString("password");
+            }
+            if (BCrypt.checkpw(p, hashedPassword)) {
+                bool = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bool;
+    }
+
+    }
+
+
