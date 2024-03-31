@@ -54,19 +54,24 @@ public class HealthMonitoringApp {
 
         // System.out.println(userDao.deleteUser(2)); 
 
-        DoctorPortalDao docDao = new DoctorPortalDao(); 
+        // DoctorPortalDao docDao = new DoctorPortalDao(); 
 
-        Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
+        // Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
 
-        docDao.createDoctor(doc3); 
+        // docDao.createDoctor(doc3); 
 
-        PatientPortalDao patDao = new PatientPortalDao(); 
+        // PatientPortalDao patDao = new PatientPortalDao(); 
 
-        Patient p = new Patient(10, "Chris", "McPhee", "chris@email.com", "chris", false); 
+        // Patient p = new Patient(10, "Chris", "McPhee", "chris@email.com", "chris", false); 
 
-        patDao.createPatient(p); 
+        // patDao.createPatient(p); 
 
-        docDao.addPatientToDoctorList(doc3, p); 
+        // docDao.addPatientToDoctorList(doc3, p); 
+
+
+      MedicineReminderManager mrManager = new MedicineReminderManager(); 
+
+      System.out.println(mrManager.getRemindersForUser(3)); 
 
 
         // System.out.print(docDao.getDoctorById(5)); 

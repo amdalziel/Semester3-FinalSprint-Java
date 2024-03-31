@@ -15,6 +15,12 @@ public class Patient extends User {
         this.doctorId = d; 
     }
 
+    public String toString()
+    {
+        return (super.toString() + ", Doctor: " + this.getDoctorId()); 
+    }
+
+
 
     
 }

@@ -105,7 +105,7 @@ public class MedicineReminder {
 
     public String toString()
     {
-        return ("Medicine Reminder " + this.id + "for" + this.userId + ": " + this.medicineName + ", " + this.dosage); 
+        return ("Medicine Reminder " + this.id + " for User " + this.userId + ": " + this.medicineName + ", " + this.dosage); 
     }
 
 }
