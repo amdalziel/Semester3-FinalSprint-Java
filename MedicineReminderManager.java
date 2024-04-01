@@ -14,7 +14,6 @@ import java.util.List;
  * The MedicineReminderManager class should have methods to add reminders,
  * 
  *  You'll need to integrate this class with your application and database logic to
- *  1. store,
  *  2. update, and
  *  3. delete reminders as needed.
  */
@@ -159,4 +158,37 @@ public class MedicineReminderManager {
 
         return dueReminders;
     }
+
+
+
+
+    public boolean deleteReminder(int id) { 
+
+        boolean bool = false; 
+
+        // Prepare the SQL query
+
+        String query = "DELETE FROM public.medicine_reminders\n" + //
+                        "\tWHERE id=?;";
+
+        
+        // Database logic to delete user
+
+        try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated != 0){
+                bool = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bool; 
+    }
+
+
 }

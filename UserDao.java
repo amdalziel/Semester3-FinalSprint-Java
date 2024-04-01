@@ -137,7 +137,7 @@ public class UserDao {
         // Prepare the SQL query
 
         String query = " DELETE FROM public.users\n" + //
-                        "\tWHERE id=" + id +"; ";
+                        "\tWHERE id=?; ";
 
         
         // Database logic to delete user
@@ -145,6 +145,7 @@ public class UserDao {
         try {
             Connection con = DatabaseConnection.getCon();
             PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated != 0){

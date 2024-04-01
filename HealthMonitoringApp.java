@@ -83,6 +83,13 @@ public class HealthMonitoringApp {
       System.out.println(mrManager.getDueRemindersForUser(3)); 
 
 
+      System.out.println(mrManager.getRemindersForUser(8)); 
+
+      mrManager.deleteReminder(1); 
+
+
+
+
 
         // System.out.print(docDao.getDoctorById(5)); 
     }
