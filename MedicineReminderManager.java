@@ -1,4 +1,4 @@
-
+// WORKING 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,13 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The MedicineReminderManager class should have methods to add reminders,
- * 
- *  You'll need to integrate this class with your application and database logic to
- *  2. update, and
- *  3. delete reminders as needed.
- */
 
 public class MedicineReminderManager {
 
@@ -158,6 +151,150 @@ public class MedicineReminderManager {
 
         return dueReminders;
     }
+
+
+    public <T> Boolean updateReminder(String selection, T value, MedicineReminder rem) {
+
+        Boolean bool = false; 
+         
+
+        switch (selection) {
+            case "medicine_name":
+
+            String medName = (String) value; 
+            String queryMedName = "UPDATE public.medicine_reminders\n" + //
+                                "\tSET medicine_name=?\n" + //
+                                "\tWHERE id=?;"; 
+
+        try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(queryMedName);
+
+            statement.setString(1, medName);
+            statement.setInt(2, rem.getId());
+        
+
+            int updatedRows = statement.executeUpdate();
+            if (updatedRows != 0) {
+                bool = true;
+            }
+            break; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+         
+            case "dosage":
+
+            String dos = (String) value; 
+            String queryDos = "UPDATE public.medicine_reminders\n" + //
+                                "\tSET dosage=?\n" + //
+                                "\tWHERE id=?;"; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryDos);
+
+                statement.setString(1, dos);
+                statement.setInt(2, rem.getId());
+            
+
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+            
+            case "schedule":
+
+            String sch = (String) value; 
+            String querySch = "UPDATE public.medicine_reminders\n" + //
+                                "\tSET schedule=?\n" + //
+                                "\tWHERE id=?;"; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(querySch);
+
+                statement.setString(1, sch);
+                statement.setInt(2, rem.getId());
+            
+
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+            
+            case "start_date":
+
+            LocalDate startD = (LocalDate) value; 
+            String queryStartD = "UPDATE public.medicine_reminders\n" + //
+                                "\tSET start_date=?\n" + //
+                                "\tWHERE id=?;"; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryStartD);
+
+                statement.setDate(1, java.sql.Date.valueOf(startD));
+                statement.setInt(2, rem.getId());
+            
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+        
+            case "end_date":
+
+            LocalDate endD = (LocalDate) value; 
+            String queryEndD = "UPDATE public.medicine_reminders\n" + //
+                                "\tSET end_date=?\n" + //
+                                "\tWHERE id=?;"; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryEndD);
+
+                statement.setDate(1, java.sql.Date.valueOf(endD));
+                statement.setInt(2, rem.getId());
+            
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        
+            default:
+
+            System.out.println("Error: please enter one of the following values: medication_name, dosage, schedule, start_date or end_date."); 
+                break;
+        }
+
+        if(bool) {
+            System.out.println("Update for Medicine Reminder " + rem.getId() + " complete.");
+        } 
+
+        return bool; 
+
+    } 
+
+
+
+    
+
 
 
 

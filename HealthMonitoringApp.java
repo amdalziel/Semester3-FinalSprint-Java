@@ -76,7 +76,7 @@ public class HealthMonitoringApp {
 
     //   System.out.println(mrManager.getDueRemindersForUser(3)); 
 
-    //   MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
+      MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
 
     //   mrManager.addReminder(m1); 
 
@@ -86,6 +86,16 @@ public class HealthMonitoringApp {
       System.out.println(mrManager.getRemindersForUser(8)); 
 
       mrManager.deleteReminder(1); 
+
+      mrManager.updateReminder("start_date", LocalDate.of(2025, 1, 01), m1); 
+
+      HealthDataDao hdDao = new HealthDataDao(); 
+
+    HealthData hdata1 = new HealthData(2, 8, 120, 55, 8700, 86,  LocalDate.of(2025, 1, 01)); 
+
+      hdDao.createHealthData(hdata1); 
+
+
 
 
 
