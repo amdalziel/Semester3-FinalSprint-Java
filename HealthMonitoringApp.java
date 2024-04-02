@@ -69,6 +69,23 @@ public class HealthMonitoringApp {
 
         // docDao.addPatientToDoctorList(doc3, p); 
 
+        UserDao userD = new UserDao();
+
+        DoctorPortalDao docPD = new DoctorPortalDao(); 
+
+        PatientPortalDao pDao = new PatientPortalDao(); 
+
+        Patient p1 = new Patient(13, "Amy", "Dalziel", "aaa@email.com", "amyy"); 
+
+        pDao.createPatient((p1)); 
+
+        System.out.println(pDao.getUserById(13)); 
+
+        // System.out.println(docPD.getUserDao()); 
+
+
+
+
 
       MedicineReminderManager mrManager = new MedicineReminderManager(); 
 
@@ -76,24 +93,24 @@ public class HealthMonitoringApp {
 
     //   System.out.println(mrManager.getDueRemindersForUser(3)); 
 
-      MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
+    //   MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
 
     //   mrManager.addReminder(m1); 
 
-      System.out.println(mrManager.getDueRemindersForUser(3)); 
+    //   System.out.println(mrManager.getDueRemindersForUser(3)); 
 
 
-      System.out.println(mrManager.getRemindersForUser(8)); 
+    //   System.out.println(mrManager.getRemindersForUser(8)); 
 
-      mrManager.deleteReminder(1); 
+    //   mrManager.deleteReminder(1); 
 
-      mrManager.updateReminder("start_date", LocalDate.of(2025, 1, 01), m1); 
+    //   mrManager.updateReminder("start_date", LocalDate.of(2025, 1, 01), m1); 
 
-      HealthDataDao hdDao = new HealthDataDao(); 
+    //   HealthDataDao hdDao = new HealthDataDao(); 
 
-    HealthData hdata1 = new HealthData(2, 8, 120, 55, 8700, 86,  LocalDate.of(2025, 1, 01)); 
+    // HealthData hdata1 = new HealthData(2, 8, 120, 55, 8700, 86,  LocalDate.of(2025, 1, 01)); 
 
-      hdDao.createHealthData(hdata1); 
+    //   hdDao.createHealthData(hdata1); 
 
 
 

@@ -8,21 +8,47 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class DoctorPortalDao {
+public class DoctorPortalDao extends UserDao {
 
-    private UserDao userDao;
+    // private UserDao userDao;
     private HealthDataDao healthDataDao;
 
 
-    public DoctorPortalDao() {
-        userDao = new UserDao();
+    public DoctorPortalDao() 
+    {
+        // userDao = new UserDao();
         healthDataDao = new HealthDataDao();
     }
 
 
-    public boolean createDoctor(Doctor d) {
+    // public UserDao getUserDao()
+    // {
+    //     return this.userDao; 
+    // }
+
+
+    public HealthDataDao getHealthDataDao()
+    {
+        return this.healthDataDao; 
+    }
+
+    // public void setUserDao(UserDao u)
+    // {
+    //     this.userDao = u; 
+    // }
+
+    public void setHealthDataDao(HealthDataDao h) 
+    {
+        this.healthDataDao = h; 
+    }
+
+
+    @Override
+    public <T> boolean createUser(T user) {
 
         boolean bool = false;
+
+        Doctor d = (Doctor) user; 
         
         // insert user into database 
         String hashedPassword = BCrypt.hashpw(d.getPassword(), BCrypt.gensalt());
@@ -73,14 +99,13 @@ public class DoctorPortalDao {
         String lastName = null;
         String email = null;
         String password = null;
-        boolean is_doctor = false;
         String specialization = null;
         String medicalLicenseNumber = null; 
 
         // Prepare the SQL query
-        String query = " SELECT id, first_name, last_name, email, is_doctor, specialization, med_lic_num\n" + //
+        String query = " SELECT id, first_name, last_name, email, specialization, med_lic_num\n" + //
                         "\tFROM public.users\n" + //
-                        "\tWHERE id =" + dId + "; ";
+                        "\tWHERE id = ?; ";
 
 
         // Database logic to get data by ID Using Prepared Statement
@@ -88,6 +113,7 @@ public class DoctorPortalDao {
         try{
             Connection con = DatabaseConnection.getCon();
             PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1,dId);
 
             ResultSet rs = statement.executeQuery();
 
@@ -96,7 +122,6 @@ public class DoctorPortalDao {
                 firstName = rs.getString("first_name");
                 lastName = rs.getString("last_name");
                 email = rs.getString("email");
-                is_doctor = rs.getBoolean("is_doctor");
                 specialization = rs.getString("specialization");
                 medicalLicenseNumber = rs.getString("med_lic_num");
             }
@@ -107,12 +132,13 @@ public class DoctorPortalDao {
         }
 
 
-        return new Doctor(user_id, firstName, lastName, email, password, is_doctor, specialization, medicalLicenseNumber);
+        return new Doctor(user_id, firstName, lastName, email, password, specialization, medicalLicenseNumber);
     }
 
-    // public List<User> getPatientsByDoctorId(int doctorId) {
-    //     // Implement this method
-    // }
+
+    public List<User> getPatientsByDoctorId(int doctorId) {
+        // Implement this method
+    }
 
     // public List<HealthData> getHealthDataByPatientId(int patientId) {
     //     // Implement this method
@@ -157,16 +183,36 @@ public class DoctorPortalDao {
         return bool; 
     }
 
-    public Boolean deletePatientFromDoctorList()
+    public Boolean deletePatientFromDoctorList(Doctor d, Patient p)
     {
         Boolean bool = false; 
 
+          // Prepare the SQL query
+        String query = "DELETE FROM public.doctor_patient WHERE doctor_id = ? AND patient_id = ?;";
+        
+         // Database logic to insert data using PREPARED Statement
+         try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
 
+            statement.setInt(1,d.getId());
+            statement.setInt(2,p.getId());
+  
+
+            int updatedRows = statement.executeUpdate();
+            if (updatedRows != 0) {
+
+            System.out.println("Success - Patient " + p.getId() + "deleted from the system."); 
+            bool = true;
+        }
+    } catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
 
         return bool; 
     }
 
-    // Add more methods for other doctor-specific tasks
  
 }
 

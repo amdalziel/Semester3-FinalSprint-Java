@@ -6,9 +6,6 @@ import java.util.List;
 
 public class HealthDataDao {
 
-  //  public boolean updateHealthData(HealthData healthData) { /* update health data in the database */ }
-  //  public boolean deleteHealthData(int id) { /* delete health data from the database */ }
-
 
      public boolean createHealthData(HealthData h) { 
 
@@ -51,6 +48,11 @@ public class HealthDataDao {
 //     public List<HealthData> getHealthDataByUserId(int userId) { 
       
 // }
+
+
+
+  //  public boolean updateHealthData(HealthData healthData) { /* update health data in the database */ }
+  //  public boolean deleteHealthData(int id) { /* delete health data from the database */ }
 
 
 

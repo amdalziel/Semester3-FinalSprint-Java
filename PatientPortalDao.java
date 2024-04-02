@@ -5,23 +5,33 @@ import java.sql.SQLException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-public class PatientPortalDao {
+public class PatientPortalDao extends UserDao {
 
     private UserDao userDao;
 
 
-   // Complete all these methods and add more as needed
-
-
-    public PatientPortalDao() {
+    public PatientPortalDao() 
+    {
         userDao = new UserDao();
-
     }
 
+    public UserDao getUserDao()
+    {
+        return this.userDao; 
+    }
 
-    public boolean createPatient(Patient p) {
+    public void setUserDao(UserDao u)
+        {
+            this.userDao = u; 
+        }
+
+
+    @Override
+    public <T> boolean createUser(T user) {
 
         boolean bool = false;
+
+        Patient p = (Patient) user; 
         
         // insert user into database 
         String hashedPassword = BCrypt.hashpw(p.getPassword(), BCrypt.gensalt());

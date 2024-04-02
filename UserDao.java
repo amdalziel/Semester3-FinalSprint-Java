@@ -1,12 +1,15 @@
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class UserDao {
    
-    public boolean createUser(User u) {
+    public <T> boolean createUser(T user) {
 
         boolean bool = false;
+
+        User u = (User) user; 
 
         // insert user into database 
         String hashedPassword = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt());
@@ -46,10 +49,9 @@ public class UserDao {
         String lastName = null;
         String email = null;
         String password = null;
-        boolean is_doctor = false;
 
         // Prepare the SQL query
-        String query = " SELECT id, first_name, last_name, email, is_doctor\n" + //
+        String query = " SELECT id, first_name, last_name, email\n" + //
                         "\tFROM public.users\n" + //
                         "\tWHERE id= ?; ";
 
@@ -60,6 +62,8 @@ public class UserDao {
             Connection con = DatabaseConnection.getCon();
             PreparedStatement statement = con.prepareStatement(query);
 
+            statement.setInt(1, id);
+
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -67,7 +71,6 @@ public class UserDao {
                 firstName = rs.getString("first_name");
                 lastName = rs.getString("last_name");
                 email = rs.getString("email");
-                is_doctor = rs.getBoolean("is_doctor");
             }
 
     } catch(SQLException e)
@@ -89,10 +92,9 @@ public class UserDao {
         String lastName = null;
         String email = null;
         String password = null;
-        boolean is_doctor = false;
 
         // Prepare the SQL query
-        String query = " SELECT id, first_name, last_name, email, is_doctor\n" + //
+        String query = " SELECT id, first_name, last_name, email\n" + //
                         "\tFROM public.users\n" + //
                         "\tWHERE email= ?; ";
 
@@ -102,6 +104,7 @@ public class UserDao {
         try{
             Connection con = DatabaseConnection.getCon();
             PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, e);
 
             ResultSet rs = statement.executeQuery();
 
@@ -110,7 +113,6 @@ public class UserDao {
                 firstName = rs.getString("first_name");
                 lastName = rs.getString("last_name");
                 email = rs.getString("email");
-                is_doctor = rs.getBoolean("is_doctor");
             }
 
     } catch(SQLException err)
@@ -124,10 +126,122 @@ public class UserDao {
     }
 
 
-    // public boolean updateUser(User user) {
-    //     // Prepare the SQL query
-    //     // Database logic to get update user Using Prepared Statement
-    // }
+    public <T> boolean updateUser(String selection, T value, User user) {
+
+        Boolean bool = false; 
+
+        switch (selection) {
+            case "first_name":
+
+            String fName = (String) value; 
+            String queryFName = "UPDATE public.users\n" + //
+                                "\tSET first_name= ?\n" + //
+                                "\tWHERE id= ?;"; 
+
+        try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(queryFName);
+
+            statement.setString(1, fName);
+            statement.setInt(2, user.getId());
+        
+
+            int updatedRows = statement.executeUpdate();
+            if (updatedRows != 0) {
+                bool = true;
+            }
+            break; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+         
+            case "last_name":
+
+            String lName = (String) value; 
+            String queryLName = "UPDATE public.users\n" + //
+                                "\tSET last_name= ?\n" + //
+                                        "\tWHERE id= ?;"; ; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryLName);
+
+                statement.setString(1, lName);
+                statement.setInt(2, user.getId());
+            
+
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+            
+            case "email":
+
+            String email = (String) value; 
+            String queryEmail ="UPDATE public.users\n" + //
+                            "\tSET email= ?\n" + //
+                            "\tWHERE id= ?;"; ; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryEmail);
+
+                statement.setString(1, email);
+                statement.setInt(2, user.getId());
+            
+
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+            
+            case "password":
+
+            String password = (String) value; 
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            String queryPassword = "UPDATE public.users\n" + //
+                                "\tSET password= ?\n" + //
+                                "\tWHERE id= ?;"; ; 
+
+            try {
+                Connection con = DatabaseConnection.getCon();
+                PreparedStatement statement = con.prepareStatement(queryPassword);
+
+                statement.setString(1, hashedPassword);
+                statement.setInt(2, user.getId());
+            
+                int updatedRows = statement.executeUpdate();
+                if (updatedRows != 0) {
+                    bool = true;
+                }
+                break; 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
+        
+            default:
+
+            System.out.println("Error: please enter one of the following values: first_name, last_name, email or password."); 
+                break;
+        }
+
+        if(bool) {
+            System.out.println("Update for Medicine Reminder " + user.getId() + " complete.");
+        } 
+
+        return bool; 
+    }
+
+
+
 
 
     public boolean deleteUser(int id) { 
