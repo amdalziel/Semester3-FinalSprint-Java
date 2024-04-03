@@ -57,14 +57,18 @@ public class HealthMonitoringApp {
 
         DoctorPortalDao docDao = new DoctorPortalDao(); 
 
-        System.out.println(docDao.getPatientsByDoctorId(3)); 
+        Doctor docApril3 = new Doctor("Maria", "Dalziel", "m@gmail.com", "maria", "Pediatrics", "992039"); 
 
-        HealthDataDao healthD = new HealthDataDao(); 
+      docDao.createUser(docApril3);
+
+        // System.out.println(docDao.getPatientsByDoctorId(3)); 
+
+        // HealthDataDao healthD = new HealthDataDao(); 
 
 
-        System.out.println(healthD.getHealthDataByUserId(3));
+        // System.out.println(healthD.getHealthDataByUserId(3));
 
-        HealthData hdata22 = new HealthData(12, 10, 65, 1.67, 9000, 130, LocalDate.of(2024, 3, 10));
+        // HealthData hdata22 = new HealthData(15, 10, 100, 1.67, 12000, 130, LocalDate.of(2024, 3, 10));
 
         // healthD.createHealthData(hdata22); 
 
@@ -74,11 +78,11 @@ public class HealthMonitoringApp {
 
         // System.out.println(healthD.getHealthDataById(5)); 
 
-        System.out.println(docDao.getHealthDataByPatientId(10));
+        // System.out.println(docDao.getHealthDataByPatientId(10));
 
-        RecommendationSystem recSystem = new RecommendationSystem(); 
+        // RecommendationSystem recSystem = new RecommendationSystem(); 
 
-        System.out.println(recSystem.generateRecommendations(hdata22)); 
+        // System.out.println(recSystem.generateRecommendations(hdata22)); 
     
 
     

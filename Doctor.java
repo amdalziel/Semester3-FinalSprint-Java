@@ -15,8 +15,9 @@ public class Doctor extends User{
     private ArrayList<Patient> patientList; 
 
     // Constructor Method - uses values from the User Class 
-    public Doctor(int id, String firstName, String lastName, String email, String password, String spec, String medLN) {
-        super(id, firstName, lastName, email, password);
+    public Doctor(String firstName, String lastName, String email, String password, String spec, String medLN) {
+        
+        super(firstName, lastName, email, password);
         this.specialization = spec;
         this.medicalLicenseNumber = medLN;
         this.isDoctor = true; 

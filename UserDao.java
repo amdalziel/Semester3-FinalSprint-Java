@@ -9,7 +9,6 @@ public class UserDao {
     public <T> boolean createUser(T user) {
 
         boolean bool = false;
-
         User u = (User) user; 
 
         // insert user into database 

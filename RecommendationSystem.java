@@ -1,8 +1,8 @@
 
-
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,25 +18,42 @@ public class RecommendationSystem {
 
     public List<String> generateRecommendations(HealthData healthData) {
         List<String> recommendations = new ArrayList<>();
-
-        int id = 7; 
+        int id = 0; 
         LocalDate now = LocalDate.now(); 
 
-        // Analyze BMI 
 
+        // Find the last id number used in table 
+
+        String queryLastId = "SELECT id FROM public.recommendations ORDER BY id DESC LIMIT 1;"; 
+
+         try {
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(queryLastId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        // Add one to the last value read in database 
+        id = id + 1; 
+
+        // Analyze BMI 
         double weight = healthData.getWeight(); 
         double height = healthData.getHeight(); 
 
         double dataBMI = weight / (height * height); 
         // System.out.println(dataBMI);
 
-        if(dataBMI > OVERWEIGHT_BMI) {
-                recommendations.add("Your BMI is in the overweight category." + 
+        if(dataBMI >= OVERWEIGHT_BMI) {
+                recommendations.add("Your BMI is in the overweight range." + 
                 "Consider taking steps to increase your physical activity and maintain a more healthy & balanced diet.");   
         }
 
-        if(dataBMI < UNDERWEIGHT_BMI) {
-                recommendations.add("Your BMI is in the undertweight category." + 
+        if(dataBMI <= UNDERWEIGHT_BMI) {
+                recommendations.add("Your BMI is in the undertweight range." + 
                 "Consider adjusting your diet to increase your caloric intake."); 
         }
         
