@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -21,21 +22,11 @@ public class DoctorPortalDao extends UserDao {
     }
 
 
-    // public UserDao getUserDao()
-    // {
-    //     return this.userDao; 
-    // }
-
-
     public HealthDataDao getHealthDataDao()
     {
         return this.healthDataDao; 
     }
 
-    // public void setUserDao(UserDao u)
-    // {
-    //     this.userDao = u; 
-    // }
 
     public void setHealthDataDao(HealthDataDao h) 
     {
@@ -128,16 +119,57 @@ public class DoctorPortalDao extends UserDao {
 
     } catch(SQLException e)
         {
+            System.out.println("Error: "); 
             e.printStackTrace();
         }
 
-
+        System.out.println("Success: "); 
         return new Doctor(user_id, firstName, lastName, email, password, specialization, medicalLicenseNumber);
     }
 
 
     public List<User> getPatientsByDoctorId(int doctorId) {
-        // Implement this method
+
+        ArrayList<User> patientList = new ArrayList(); 
+
+        int patient_id = 0; 
+        ArrayList<Integer> patientIds = new ArrayList<>(); 
+        
+        // Prepare the SQL query
+        String query = "SELECT patient_id\n" + //
+        "\tFROM public.doctor_patient\n" + //
+        "\tWHERE doctor_id = ?;"; 
+
+
+         // Database logic to get data by ID Using Prepared Statement
+         try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1,doctorId);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) 
+            {
+                patient_id = rs.getInt("patient_id");
+                patientIds.add(patient_id); 
+            }
+
+    } catch(SQLException e)
+        {
+            System.out.println("Error: "); 
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i < patientIds.size(); i++) 
+        {
+            int currId = patientIds.get(i); 
+            User p = this.getUserById(currId); 
+            patientList.add(p);
+
+        }
+
+        return patientList; 
     }
 
     // public List<HealthData> getHealthDataByPatientId(int patientId) {

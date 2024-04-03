@@ -1,6 +1,6 @@
 public class Patient extends User {
-    Boolean isDoctor; 
-
+    
+    private Boolean isDoctor; 
     private int doctorId; 
 
     public Patient(int id, String firstName, String lastName, String email, String password) {

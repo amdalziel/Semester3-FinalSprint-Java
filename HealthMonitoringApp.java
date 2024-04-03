@@ -55,7 +55,9 @@ public class HealthMonitoringApp {
 
         // System.out.println(userDao.deleteUser(2)); 
 
-        // DoctorPortalDao docDao = new DoctorPortalDao(); 
+        DoctorPortalDao docDao = new DoctorPortalDao(); 
+
+        System.out.println(docDao.getPatientsByDoctorId(8)); 
 
         // Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
 
@@ -69,17 +71,19 @@ public class HealthMonitoringApp {
 
         // docDao.addPatientToDoctorList(doc3, p); 
 
-        UserDao userD = new UserDao();
+        // UserDao userD = new UserDao();
 
-        DoctorPortalDao docPD = new DoctorPortalDao(); 
+        // DoctorPortalDao docPD = new DoctorPortalDao(); 
 
-        PatientPortalDao pDao = new PatientPortalDao(); 
+        // PatientPortalDao pDao = new PatientPortalDao(); 
 
-        Patient p1 = new Patient(13, "Amy", "Dalziel", "aaa@email.com", "amyy"); 
+        // Patient p1 = new Patient(13, "Amy", "Dalziel", "aaa@email.com", "amyy"); 
 
-        pDao.createPatient((p1)); 
+        // pDao.createPatient((p1)); 
 
-        System.out.println(pDao.getUserById(13)); 
+        // System.out.println(pDao.getUserById(13)); 
+
+
 
         // System.out.println(docPD.getUserDao()); 
 
