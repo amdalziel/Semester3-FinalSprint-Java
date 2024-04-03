@@ -7,14 +7,17 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class PatientPortalDao extends UserDao {
 
+    // Attributes 
     private UserDao userDao;
 
 
+    // Constructor Method 
     public PatientPortalDao() 
     {
         userDao = new UserDao();
     }
 
+    // Getters and Setters 
     public UserDao getUserDao()
     {
         return this.userDao; 

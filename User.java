@@ -1,12 +1,15 @@
 // WORKING
 
 public class User {
+
+    // Attributes 
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
+    // Constructor Method 
     public User() {
         this.id = -1; 
         this.firstName = null;
@@ -15,6 +18,7 @@ public class User {
         this.password = null;
     }
 
+    // Constructor Method (takes in values from the user)
     public User(int id, String firstName, String lastName, String email, String password) {
         this.id = id; 
         this.firstName = firstName;
@@ -23,6 +27,7 @@ public class User {
         this.password = password;
     }
 
+    // Getters and Setters 
     public int getId() {
         return this.id;
     }
@@ -63,6 +68,7 @@ public class User {
         this.password = p;
     }
 
+    // toString Method 
     public String toString()
     {
         return ("User " + this.id + ":" + this.firstName + " " + this.lastName + ", Email: " + this.email); 

@@ -1,4 +1,4 @@
-
+// WORKING 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,17 +11,18 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class DoctorPortalDao extends UserDao {
 
-    // private UserDao userDao;
+    // Attributes 
     private HealthDataDao healthDataDao;
 
 
+    // Constructor Method 
     public DoctorPortalDao() 
     {
-        // userDao = new UserDao();
         healthDataDao = new HealthDataDao();
     }
 
 
+    // Getters and Setters 
     public HealthDataDao getHealthDataDao()
     {
         return this.healthDataDao; 
@@ -34,6 +35,7 @@ public class DoctorPortalDao extends UserDao {
     }
 
 
+    
     @Override
     public <T> boolean createUser(T user) {
 
@@ -83,6 +85,8 @@ public class DoctorPortalDao extends UserDao {
 
     }
 
+
+    // DoctorPortalDAO Methods 
     public Doctor getDoctorById(int dId) {
 
         int user_id = 0;
@@ -99,8 +103,7 @@ public class DoctorPortalDao extends UserDao {
                         "\tWHERE id = ?; ";
 
 
-        // Database logic to get data by ID Using Prepared Statement
-
+        // Database logic 
         try{
             Connection con = DatabaseConnection.getCon();
             PreparedStatement statement = con.prepareStatement(query);
@@ -126,6 +129,8 @@ public class DoctorPortalDao extends UserDao {
         System.out.println("Success: "); 
         return new Doctor(user_id, firstName, lastName, email, password, specialization, medicalLicenseNumber);
     }
+
+
 
 
     public List<User> getPatientsByDoctorId(int doctorId) {
@@ -172,9 +177,56 @@ public class DoctorPortalDao extends UserDao {
         return patientList; 
     }
 
-    // public List<HealthData> getHealthDataByPatientId(int patientId) {
-    //     // Implement this method
-    // }
+
+
+    public List<HealthData> getHealthDataByPatientId(int patientId) {
+
+
+        ArrayList<HealthData> healthDataList = new ArrayList(); 
+
+        int healthData_id = 0; 
+        ArrayList<Integer> healthDataIds = new ArrayList<>(); 
+        
+        // Prepare the SQL query
+        String query = "SELECT id, weight, height, steps, heart_rate, date\n" + //
+                        "\tFROM public.health_data\n" + //
+                        "\tWHERE user_id = ?; "; 
+
+
+         // Database logic to get data by ID Using Prepared Statement
+         try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1,patientId);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) 
+            {
+                healthData_id = rs.getInt("id");
+                healthDataIds.add(healthData_id); 
+            }
+
+    } catch(SQLException e)
+        {
+            System.out.println("Error: "); 
+            e.printStackTrace();
+        }
+
+
+        for(int i = 0; i < healthDataIds.size(); i++) 
+        {
+            int currId = healthDataIds.get(i); 
+            HealthData h = this.healthDataDao.getHealthDataById(currId); 
+            healthDataList.add(h);
+
+        }
+
+        return healthDataList; 
+       
+    }
+
+
 
 
     public Boolean addPatientToDoctorList(Doctor d, Patient p)

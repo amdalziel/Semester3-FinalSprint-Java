@@ -1,4 +1,4 @@
-// WORKING! Modify toString method? 
+// WORKING!
 
 import java.time.LocalDate;
 
@@ -105,7 +105,9 @@ public class MedicineReminder {
 
     public String toString()
     {
-        return ("Medicine Reminder " + this.id + " for User " + this.userId + ": " + this.medicineName + ", " + this.dosage); 
+        return ("Medicine Reminder " + this.id + " for User " + this.userId + "\n" + // 
+        "Medicine Name: " + this.medicineName + ", Dosage: " + this.dosage + "\n" + // 
+        "Schedule: " + this.schedule + ", Start Date: " + this.startDate + ", End Date: " + this.endDate); 
     }
 
 }

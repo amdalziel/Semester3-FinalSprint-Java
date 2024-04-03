@@ -57,7 +57,29 @@ public class HealthMonitoringApp {
 
         DoctorPortalDao docDao = new DoctorPortalDao(); 
 
-        System.out.println(docDao.getPatientsByDoctorId(8)); 
+        System.out.println(docDao.getPatientsByDoctorId(3)); 
+
+        HealthDataDao healthD = new HealthDataDao(); 
+
+
+        System.out.println(healthD.getHealthDataByUserId(3));
+
+        // HealthData hdata22 = new HealthData(5, 10, 120.00, 6.1, 9000, 130, LocalDate.of(2024, 3, 10));
+
+        // healthD.createHealthData(hdata22); 
+
+        // System.out.println(healthD.getHealthDataById(5)); 
+
+        // healthD.updateHealthData("height", 6.5, hdata22); 
+
+        // System.out.println(healthD.getHealthDataById(5)); 
+
+        System.out.println(docDao.getHealthDataByPatientId(10));
+    
+
+    
+
+
 
         // Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
 

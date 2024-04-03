@@ -103,6 +103,9 @@ public class HealthData {
 
     public String toString()
     {
-        return ("Health Data " + this.healthDataId ); 
+        return ("Health Data " + this.getHealthDataId() + " for User: " + this.getUserId() + "\n" + // 
+        "Weight: " + this.getWeight() + ", Height: " + this.getHeight() + "\n" + // 
+        "Steps: " + this.getSteps() + ", Heart Rate: " + this.getHeartRate() + "\n" + // 
+        "Date: " + this.getDate());
     }
 }
