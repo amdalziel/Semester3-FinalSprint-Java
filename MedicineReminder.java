@@ -1,5 +1,9 @@
 // WORKING!
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class MedicineReminder {
@@ -15,6 +19,7 @@ public class MedicineReminder {
 
     public MedicineReminder(int id, int uId, String mName, String d, String sch, LocalDate sDate, LocalDate eDate)
     {
+
         this.id = id; 
         this.userId = uId; 
         this.medicineName = mName; 

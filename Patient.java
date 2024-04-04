@@ -5,8 +5,8 @@ public class Patient extends User {
     private int doctorId; 
 
     // Constructor Method - uses values from the User Class 
-    public Patient(String firstName, String lastName, String email, String password) {
-        super(firstName, lastName, email, password); 
+    public Patient(int id, String firstName, String lastName, String email, String password) {
+        super(id, firstName, lastName, email, password); 
         isDoctor = false; 
     }
 

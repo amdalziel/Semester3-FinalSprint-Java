@@ -16,25 +16,7 @@ public class User {
 
     // Constructor Method 
     public User() {
-
-        int prevId = 0; 
-        
-        // Find the last id number used in table 
-        String queryLastId = "SELECT id FROM public.users ORDER BY id DESC LIMIT 1;"; 
-
-         try {
-            Connection con = DatabaseConnection.getCon();
-            PreparedStatement statement = con.prepareStatement(queryLastId);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                prevId = rs.getInt("id");
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        // Add one to the last value read in database 
-        this.id = prevId + 1; 
+        this.id = (Integer) null; 
         this.firstName = null;
         this.lastName = null;
         this.email = null;
@@ -42,25 +24,9 @@ public class User {
     }
 
     // Constructor Method (takes in values from the user)
-    public User(String firstName, String lastName, String email, String password) {
+    public User(int id, String firstName, String lastName, String email, String password) {
 
-        int prevId = 0; 
-        
-        // Find the last id number used in table 
-        String queryLastId = "SELECT id FROM public.users ORDER BY id DESC LIMIT 1;"; 
-
-         try {
-            Connection con = DatabaseConnection.getCon();
-            PreparedStatement statement = con.prepareStatement(queryLastId);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                prevId = rs.getInt("id");
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        this.id = prevId + 1; 
+        this.id = id; 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

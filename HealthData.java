@@ -1,5 +1,9 @@
 // WORKING
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class HealthData {
@@ -13,9 +17,9 @@ public class HealthData {
 
     // Constructor Method 
 
-    public HealthData(int hId, int uId, double w, double h, int st, int hrate, LocalDate d)
+    public HealthData(int hDID, int uId, double w, double h, int st, int hrate, LocalDate d)
     {
-        this.healthDataId = hId;
+        this.healthDataId = hDID; 
         this.userId = uId; 
         this.weight = w;
         this.height = h;

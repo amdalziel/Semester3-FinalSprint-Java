@@ -164,3 +164,23 @@ public class UserDaoExample {
     }
 
 }
+
+
+// int prevId = 0; 
+        
+//         // Find the last id number used in table 
+//         String queryLastId = "SELECT id FROM public.health_data ORDER BY id DESC LIMIT 1;"; 
+
+//          try {
+//             Connection con = DatabaseConnection.getCon();
+//             PreparedStatement statement = con.prepareStatement(queryLastId);
+//             ResultSet rs = statement.executeQuery();
+//             while (rs.next()) {
+//                 prevId = rs.getInt("id");
+//             }
+//         } catch (SQLException e){
+//             e.printStackTrace();
+//         }
+
+//         // Add one to the last value read in database 
+//         this.healthDataId = prevId + 1; 

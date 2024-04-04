@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner; 
 
 
 public class HealthMonitoringApp {
@@ -13,8 +14,8 @@ public class HealthMonitoringApp {
     private static UserDao userDao = new UserDao();
     /**
      * Test the following functionalities within the Main Application
-     *  1. Register a new user
-     *  2. Log in the user
+     *  1. Register a new user 
+     *  2. Log in the user - DONE 
      *  3. Add health data
      *  4. Generate recommendations
      *  5. Add a medicine reminder
@@ -25,8 +26,15 @@ public class HealthMonitoringApp {
     public static void main(String[] args) {
        DatabaseConnection databaseConnection = new DatabaseConnection();
         UserDao userDao = new UserDao();
+        DoctorPortalDao doctorDao = new DoctorPortalDao(); 
+        PatientPortalDao patientDao = new PatientPortalDao(); 
+
+
         // test register a new user
+
         // test Login user (call testLoginUser() here)
+        loginUser(); 
+
         // Add health data
         // Generate recommendations
         // Add a medicine reminder
@@ -35,138 +43,66 @@ public class HealthMonitoringApp {
         //test doctor portal (call testDoctorPortal() here)
 
 
-        // List<User> userList = new ArrayList<>();
+        // List<Patient> patientList = new ArrayList<>();
+        // List<Doctor> doctorList = new ArrayList<>();
 
-        // User user1 = new User(3,"Luke", "Tobin","luke@gmail.com", "luke", false);
-        // userList.add(user1);
+        // Patient user1 = new Patient(15,"Luke", "Tobin","lukey@gmail.com", "luke");
+        // patientList.add(user1);
 
-        // User user2 = new User(5,"Amelia", "Tobin","a@gmail.com", "aaa", true);
-        // userList.add(user2);
+        // Doctor user2 = new Doctor(16,"Amelia", "Tobin","aMa@gmail.com", "ameila", "Dermatologist", "990287");
+        // doctorList.add(user2);
 
-        // for (User users : userList) {
-        //     userDao.createUser(users);
+        // for (Patient patients : patientList) {
+        //     patientDao.createUser(patients);
         // }
 
-        // System.out.println(userDao.getUserById(3)); 
-
-        // System.out.println(); 
-
-        // System.out.println(userDao.getUserByEmail("amy@gmail.com")); 
-
-        // System.out.println(userDao.deleteUser(2)); 
-
-        DoctorPortalDao docDao = new DoctorPortalDao(); 
-
-        Doctor docApril3 = new Doctor("Maria", "Dalziel", "m@gmail.com", "maria", "Pediatrics", "992039"); 
-
-      docDao.createUser(docApril3);
-
-        // System.out.println(docDao.getPatientsByDoctorId(3)); 
-
-        // HealthDataDao healthD = new HealthDataDao(); 
-
-
-        // System.out.println(healthD.getHealthDataByUserId(3));
-
-        // HealthData hdata22 = new HealthData(15, 10, 100, 1.67, 12000, 130, LocalDate.of(2024, 3, 10));
-
-        // healthD.createHealthData(hdata22); 
-
-        // System.out.println(healthD.getHealthDataById(5)); 
-
-        // healthD.updateHealthData("height", 6.5, hdata22); 
-
-        // System.out.println(healthD.getHealthDataById(5)); 
-
-        // System.out.println(docDao.getHealthDataByPatientId(10));
-
-        // RecommendationSystem recSystem = new RecommendationSystem(); 
-
-        // System.out.println(recSystem.generateRecommendations(hdata22)); 
-    
-
-    
-
-
-
-        // Doctor doc3 = new Doctor(8, "Ameliaa", "Dalziel", "aaaamelia@gmai.com", "aaa", true, "OBGYN", "66677728"); 
-
-        // docDao.createDoctor(doc3); 
-
-        // PatientPortalDao patDao = new PatientPortalDao(); 
-
-        // Patient p = new Patient(10, "Chris", "McPhee", "chris@email.com", "chris", false); 
-
-        // patDao.createPatient(p); 
-
-        // docDao.addPatientToDoctorList(doc3, p); 
-
-        // UserDao userD = new UserDao();
-
-        // DoctorPortalDao docPD = new DoctorPortalDao(); 
-
-        // PatientPortalDao pDao = new PatientPortalDao(); 
-
-        // Patient p1 = new Patient(13, "Amy", "Dalziel", "aaa@email.com", "amyy"); 
-
-        // pDao.createPatient((p1)); 
-
-        // System.out.println(pDao.getUserById(13)); 
-
-
-
-        // System.out.println(docPD.getUserDao()); 
+        // for(Doctor doctors : doctorList) {
+        //   doctorDao.createUser(doctors); 
+        // }
 
 
 
 
-
-      MedicineReminderManager mrManager = new MedicineReminderManager(); 
-
-    //   System.out.println(mrManager.getRemindersForUser(3)); 
-
-    //   System.out.println(mrManager.getDueRemindersForUser(3)); 
-
-    //   MedicineReminder m1 = new MedicineReminder(5, 3, "Med1", "500grams", "2x day", LocalDate.of(2024, 01, 01), LocalDate.of(2024, 02, 05)); 
-
-    //   mrManager.addReminder(m1); 
-
-    //   System.out.println(mrManager.getDueRemindersForUser(3)); 
-
-
-    //   System.out.println(mrManager.getRemindersForUser(8)); 
-
-    //   mrManager.deleteReminder(1); 
-
-    //   mrManager.updateReminder("start_date", LocalDate.of(2025, 1, 01), m1); 
-
-    //   HealthDataDao hdDao = new HealthDataDao(); 
-
-    // HealthData hdata1 = new HealthData(2, 8, 120, 55, 8700, 86,  LocalDate.of(2025, 1, 01)); 
-
-    //   hdDao.createHealthData(hdata1); 
-
-
-
-
-
-
-
-        // System.out.print(docDao.getDoctorById(5)); 
     }
 
 
-    // public static boolean loginUser(String email, String password) {
-    //     //implement method to login user.
-    //     User user = userDao.getUserByEmail(email);
+    public static boolean loginUser() {
+        
+      String email; 
+      String password; 
 
-    //     if (user != null) {
-    //         // Compare the stored hashed password with the given password and return result
-    //     }
+      Scanner input = new Scanner(System.in); 
+      System.out.println("Enter your email: "); 
+      email = input.nextLine(); 
 
-    //     return false;
+      User user = userDao.getUserByEmail(email);
 
-    // }
+      if (user.getEmail() != null) {
+
+        System.out.println("Enter your password: "); 
+        password = input.nextLine(); 
+
+        int uId = user.getId(); 
+
+        Boolean testPassword = userDao.verifyPassword(uId, password); 
+
+        if(testPassword) {
+          System.out.println("User " + user.getId() + " has successfully logged in."); 
+          return true; 
+
+        } else {
+          System.out.println("Error - password not accepted."); 
+          return false; 
+        }
+    
+      } else {
+        System.out.println("Error - email is not in our database."); 
+
+      }
+
+        return false;
+
+    }
 
 
     /**

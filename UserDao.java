@@ -79,7 +79,7 @@ public class UserDao {
         }
 
 
-        return new User(user_id, firstName, lastName, email, password);
+        return new User(id, firstName, lastName, email, password);
 
     }
 
