@@ -72,5 +72,50 @@ public class PatientPortalDao extends UserDao {
 
     }
 
+
+
+
+    public Patient getPatientById(int id) { 
+
+        int user_id = 0;
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String password = null;
+
+        // Prepare the SQL query
+        String query = " SELECT id, first_name, last_name, email\n" + //
+                        "\tFROM public.users\n" + //
+                        "\tWHERE id= ?; ";
+
+
+        // Database logic to get data by ID Using Prepared Statement
+
+        try{
+            Connection con = DatabaseConnection.getCon();
+            PreparedStatement statement = con.prepareStatement(query);
+
+            statement.setInt(1, id);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                user_id = rs.getInt("id");
+                firstName = rs.getString("first_name");
+                lastName = rs.getString("last_name");
+                email = rs.getString("email");
+            }
+
+    } catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+      
+        return new Patient(id, firstName, lastName, email, password);
+
+    }
+
+
     
 }

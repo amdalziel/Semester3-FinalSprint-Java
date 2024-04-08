@@ -12,53 +12,41 @@ import java.util.Scanner;
 public class HealthMonitoringApp {
 
     private static UserDao userDao = new UserDao();
-    /**
-     * Test the following functionalities within the Main Application
-     *  1. Register a new user 
-     *  2. Log in the user - DONE 
-     *  3. Add health data
-     *  4. Generate recommendations
-     *  5. Add a medicine reminder
-     *  6. Get reminders for a specific user
-     *  7. Get due reminders for a specific user
-     *  8. test doctor portal
-     */
+
     public static void main(String[] args) {
        DatabaseConnection databaseConnection = new DatabaseConnection();
-        UserDao userDao = new UserDao();
-        DoctorPortalDao doctorDao = new DoctorPortalDao(); 
-        PatientPortalDao patientDao = new PatientPortalDao(); 
 
 
-        // test register a new user
+        // Test 1: Register a new user
+        testRegisterUser(); 
 
-        // test Login user (call testLoginUser() here)
-        loginUser(); 
+        // Test 2: Log in a user 
+        // testLoginUser(); 
 
-        // Add health data
-        // Generate recommendations
+        // Test 3: Add Health Data 
+          // testAddHealthData(); 
+
+        // Test 4: Generate Recommendations 
+        // testGenerateRecommendations(); 
+
+        // Test 5: Add a Medicine Reminder 
+        // Test 6: Get Reminders for a Specific User 
+        // Test 7: Get DUE Reminders for a Specific User
+        // testAddMedicineReminder(); 
+
+        // Test 8: Test the Doctor Portal 
+        // testDoctorPortal(); 
+
+
+
+
         // Add a medicine reminder
         // Get reminders for a specific user
         // Get due reminders for a specific user
         //test doctor portal (call testDoctorPortal() here)
 
 
-        // List<Patient> patientList = new ArrayList<>();
-        // List<Doctor> doctorList = new ArrayList<>();
 
-        // Patient user1 = new Patient(15,"Luke", "Tobin","lukey@gmail.com", "luke");
-        // patientList.add(user1);
-
-        // Doctor user2 = new Doctor(16,"Amelia", "Tobin","aMa@gmail.com", "ameila", "Dermatologist", "990287");
-        // doctorList.add(user2);
-
-        // for (Patient patients : patientList) {
-        //     patientDao.createUser(patients);
-        // }
-
-        // for(Doctor doctors : doctorList) {
-        //   doctorDao.createUser(doctors); 
-        // }
 
 
 
@@ -66,7 +54,44 @@ public class HealthMonitoringApp {
     }
 
 
-    public static boolean loginUser() {
+    public static void testRegisterUser(){
+
+
+      DoctorPortalDao doctorDao = new DoctorPortalDao(); 
+      PatientPortalDao patientDao = new PatientPortalDao(); 
+
+      List<Patient> patientList = new ArrayList<>();
+      List<Doctor> doctorList = new ArrayList<>();
+
+      Patient user1 = new Patient(2,"Luke", "McDonald","luke@gmail.com", "luke");
+      Patient user2 = new Patient(3,"Josh", "MacIntosh","josh@gmail.com", "josh");
+      Patient user3 = new Patient(4,"Amy", "Young","amy@gmail.com", "amy");
+      patientList.add(user1);
+      patientList.add(user2);
+      patientList.add(user3);
+
+      Doctor user4 = new Doctor(5,"Karin", "Neville","karin@gmail.com", "karinDoc", "OBGYN", "990000");
+      Doctor user5 = new Doctor(6,"Kyle", "Dawe","kyle@gmail.com", "kyleDoc", "Plastic Surgeon", "990286");
+      Doctor user6 = new Doctor(7,"Ada", "Adams","ada@gmail.com", "adaDoc", "Dermatologist", "990287");
+      doctorList.add(user4);
+      doctorList.add(user5);
+      doctorList.add(user6);
+
+      for (Patient patients : patientList) {
+          patientDao.createUser(patients);
+       }
+
+        for(Doctor doctors : doctorList) {
+        doctorDao.createUser(doctors); 
+      }
+
+      patientDao.updateUser("email", "newemail@gmail.com", user2); 
+
+
+    }
+
+
+    public static boolean testLoginUser() {
         
       String email; 
       String password; 
@@ -105,44 +130,170 @@ public class HealthMonitoringApp {
     }
 
 
-    /**
-     * To test the Doctor Portal in your Health Monitoring System, provide a simple test code method that you can add
-     * to your main application class.
-     * In this method, we'll test the following functionalities:
-     * 1. Fetching a doctor by ID
-     * 2. Fetching patients associated with a doctor
-     * 3. Fetching health data for a specific patient
-    //   */
-    // public static void testDoctorPortal() {
-    //     // Replace the doctorId with a valid ID from your database
-    //     int doctorId = 1;
+    public static void testAddHealthData() {
 
-    //     // Add code to Fetch the doctor by ID
+      HealthDataDao healthDataDao = new HealthDataDao(); 
 
-    //     // Add code to Fetch patients associated with the doctor
+      List<HealthData> healthDataList = new ArrayList<>(); 
 
-    //     // Add code to Fetch health data for the patient
-
-    // }
+      HealthData healthData1 = new HealthData(1, 2, 61, 1.65, 105000, 80, LocalDate.of(2024, 4, 8)); 
+      HealthData healthData2 = new HealthData(2, 3, 80, 1.5, 6000, 95, LocalDate.of(2024, 4, 5)); 
+      HealthData healthData3 = new HealthData(3, 4, 65, 1.80, 4500, 80, LocalDate.of(2024, 4, 1)); 
+      healthDataList.add(healthData1); 
+      healthDataList.add(healthData2); 
+      healthDataList.add(healthData3); 
 
 
-    /**
-     * To test the login user functionality in your Health Monitoring System, you can
-     * add a test method to your main application class
-    //  */
-    // public static void testLoginUser() {
-    //     // Replace the email and password with valid credentials from your database
-    //     String userEmail = "john@example.com";
-    //     String userPassword = "password";
+      for(HealthData data : healthDataList) {
+        healthDataDao.createHealthData(data); 
+      }
 
-    //     boolean loginSuccess = loginUser(userEmail, userPassword);
+    }
 
-    //     if (loginSuccess) {
-    //         // Print to console, "Login Successful"
-    //     } else {
-    //         // Print to console, "Incorrect email or password. Please try again.");
-    //         // Show an error message and prompt the user to re-enter their credentials
-    //     }
-    // }
+
+    public static void testGenerateRecommendations(){
+
+      RecommendationSystem recSystem = new RecommendationSystem(); 
+
+      HealthDataDao healthDataDao = new HealthDataDao(); 
+      HealthData h1 = healthDataDao.getHealthDataById(1); 
+      HealthData h2 = healthDataDao.getHealthDataById(2); 
+      HealthData h3 = healthDataDao.getHealthDataById(3); 
+
+
+      List<String> rec1 = recSystem.generateRecommendations(h1); 
+      List<String> rec2 = recSystem.generateRecommendations(h2); 
+      List<String> rec3 = recSystem.generateRecommendations(h3); 
+      
+
+      System.out.println("Recommendation for Health Data ID 1: "); 
+      if (rec1.size() == 0) {
+        System.out.println("No recommendations recorded."); 
+      } else {
+        for(String recommendation : rec1) 
+        {
+          System.out.println(recommendation); 
+        }
+        
+      }
+    
+      
+      System.out.println("Recommendation for Health Data ID 2: "); 
+      if (rec2.size() == 0) {
+        System.out.println("No recommendations recorded."); 
+      } else {
+        for(String recommendation : rec2) 
+        {
+          System.out.println(recommendation); 
+        }
+        
+      }
+
+
+      System.out.println("Recommendation for Health Data ID 3: "); 
+      if (rec3.size() == 0) {
+        System.out.println("No recommendations recorded."); 
+      } else {
+        for(String recommendation : rec3) 
+        {
+          System.out.println(recommendation); 
+        }
+        
+      }
+
+    }
+
+
+    public static void testAddMedicineReminder(){
+
+      MedicineReminderManager medRemManager = new MedicineReminderManager(); 
+
+      MedicineReminder medRem1 = new MedicineReminder(1, 2, "Tylenol", "20ml", "1x daily", LocalDate.of(2024, 2, 1), LocalDate.of(2024, 9, 5)); 
+      MedicineReminder medRem2 = new MedicineReminder(2, 2, "Eye Drops", "2 drops", "1x morning, 1x evening", LocalDate.of(2024, 3, 10), LocalDate.of(2024, 5, 5)); 
+      MedicineReminder medRem3 = new MedicineReminder(3, 2, "Elidel", "Fingertip amount", "2x daily", LocalDate.of(2024, 1, 1), LocalDate.of(2024, 3, 8)); 
+      MedicineReminder medRem4 = new MedicineReminder(4, 3, "CereVe Eczema Cream", "Fingertip amount", "1x daily", LocalDate.of(2024, 1, 1), LocalDate.of(2024, 3, 8)); 
+
+      medRemManager.addReminder(medRem1); 
+      medRemManager.addReminder(medRem2);
+      medRemManager.addReminder(medRem3);
+      medRemManager.addReminder(medRem4);
+      
+    
+      List<MedicineReminder> allRem = medRemManager.getRemindersForUser(2); 
+
+      List<MedicineReminder> dueRem = medRemManager.getDueRemindersForUser(2); 
+
+      System.out.println("All reminders: "); 
+      if (allRem.size() == 0) {
+        System.out.println("No reminders recorded."); 
+      } else {
+        for(MedicineReminder reminder : allRem) 
+        {
+          System.out.println(reminder); 
+        }
+      }
+
+
+      System.out.println("DUE reminders: "); 
+      if (dueRem.size() == 0) {
+        System.out.println("No reminders recorded."); 
+      } else {
+        for(MedicineReminder reminder : dueRem) 
+        {
+          System.out.println(reminder); 
+        }
+      }
+
+    }
+
+
+
+    public static void testDoctorPortal() {
+     
+        DoctorPortalDao doctorDao = new DoctorPortalDao(); 
+        PatientPortalDao patientDao = new PatientPortalDao(); 
+
+        int doctorId = 7;
+
+        Doctor doc7 = doctorDao.getDoctorById(doctorId); 
+        Patient pat2 = patientDao.getPatientById(2); 
+        Patient pat3 = patientDao.getPatientById(3); 
+
+        System.out.println(doctorDao.getDoctorById(doctorId)); 
+
+        doctorDao.addPatientToDoctorList(doc7, pat2); 
+        doctorDao.addPatientToDoctorList(doc7, pat3); 
+
+
+     List<User> listPat = doctorDao.getPatientsByDoctorId(doctorId); 
+
+
+      System.out.println("Patients for Doctor with ID 7: "); 
+      if (listPat.size() == 0) {
+        System.out.println("No patients recorded."); 
+      } else {
+        for(User patient : listPat) 
+        {
+          System.out.println(patient); 
+        }
+      }
+
+      List<HealthData> listHealthD = doctorDao.getHealthDataByPatientId(2); 
+
+      System.out.println("Health Data for Patients of Doctor with ID 7: "); 
+      if (listHealthD.size() == 0) {
+        System.out.println("No data recorded."); 
+      } else {
+        for(HealthData healthD : listHealthD) 
+        {
+          System.out.println(healthD); 
+        }
+      }
+
+        
+
+    }
+
+
 
 }

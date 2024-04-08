@@ -126,7 +126,6 @@ public class DoctorPortalDao extends UserDao {
             e.printStackTrace();
         }
 
-        System.out.println("Success: "); 
         return new Doctor(user_id, firstName, lastName, email, password, specialization, medicalLicenseNumber);
     }
 

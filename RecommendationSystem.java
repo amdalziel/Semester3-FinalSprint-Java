@@ -48,13 +48,13 @@ public class RecommendationSystem {
         // System.out.println(dataBMI);
 
         if(dataBMI >= OVERWEIGHT_BMI) {
-                recommendations.add("Your BMI is in the overweight range." + 
-                "Consider taking steps to increase your physical activity and maintain a more healthy & balanced diet.");   
+                recommendations.add("Your BMI is in the overweight range. " + 
+                "Consider taking steps to increase your physical activity and maintain a more healthy & balanced diet. ");   
         }
 
         if(dataBMI <= UNDERWEIGHT_BMI) {
                 recommendations.add("Your BMI is in the undertweight range." + 
-                "Consider adjusting your diet to increase your caloric intake."); 
+                "Consider adjusting your diet to increase your caloric intake. "); 
         }
         
 
@@ -62,12 +62,12 @@ public class RecommendationSystem {
         int heartRate = healthData.getHeartRate();
         if (heartRate < MIN_HEART_RATE) {
             recommendations.add("Your heart rate is lower than the recommended range. " +
-                    "Consider increasing your physical activity to improve your cardiovascular health.");
+                    "Consider increasing your physical activity to improve your cardiovascular health. ");
         }
 
         if (heartRate > MAX_HEART_RATE) {
                 recommendations.add("Your heart rate is higher than the recommended range. " +
-                        "Be sure to maintain a healthy diet, stay hydrated and include physical activity in your daily lifestyle.");
+                        "Be sure to maintain a healthy diet, stay hydrated and include physical activity in your daily lifestyle. ");
             }
 
 
@@ -75,7 +75,7 @@ public class RecommendationSystem {
         int steps = healthData.getSteps();
         if (steps < MIN_STEPS) {
             recommendations.add("You're not reaching the recommended daily step count. " +
-                    "Try to incorporate more walking or other physical activities into your daily routine.");
+                    "Try to incorporate more walking or other physical activities into your daily routine. ");
         }
 
         String[] recArray = recommendations.toArray(new String[recommendations.size()]); 

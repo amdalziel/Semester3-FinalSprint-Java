@@ -78,7 +78,7 @@ public class UserDao {
             e.printStackTrace();
         }
 
-
+      
         return new User(id, firstName, lastName, email, password);
 
     }
@@ -234,7 +234,7 @@ public class UserDao {
         }
 
         if(bool) {
-            System.out.println("Update for Medicine Reminder " + user.getId() + " complete.");
+            System.out.println("Update for User " + user.getId() + " complete.");
         } 
 
         return bool; 
