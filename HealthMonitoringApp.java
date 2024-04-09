@@ -18,10 +18,12 @@ public class HealthMonitoringApp {
 
 
         // Test 1: Register a new user
-        testRegisterUser(); 
+        // testRegisterUser(); 
+        testUserMethods(); 
 
         // Test 2: Log in a user 
         // testLoginUser(); 
+        
 
         // Test 3: Add Health Data 
           // testAddHealthData(); 
@@ -85,9 +87,20 @@ public class HealthMonitoringApp {
         doctorDao.createUser(doctors); 
       }
 
+
+    }
+
+    
+    public static void testUserMethods() 
+    {
+      PatientPortalDao patientDao = new PatientPortalDao(); 
+
+      User user2 = patientDao.getUserById(2); 
+      User user3 = patientDao.getUserById(3);
+
       patientDao.updateUser("email", "newemail@gmail.com", user2); 
-
-
+      patientDao.updateUser("last_name", "NewName", user3); 
+      patientDao.updateUser("hello", "new data", user3); 
     }
 
 
@@ -289,11 +302,9 @@ public class HealthMonitoringApp {
           System.out.println(healthD); 
         }
       }
-
-        
+ 
 
     }
-
 
 
 }
