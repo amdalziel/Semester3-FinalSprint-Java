@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner; 
 
+/**
+ * Tests the main functions of the Smart Health Monitoring System application. 
+ * Contains 8 tests (each containing one or two methods) to show how each class communicates with a postgres database.
+ * @author Amy Dalziel 
+ */
 
 public class HealthMonitoringApp {
 
@@ -47,15 +52,12 @@ public class HealthMonitoringApp {
         // Get due reminders for a specific user
         //test doctor portal (call testDoctorPortal() here)
 
-
-
-
-
-
-
     }
 
-
+/**
+ * Tests that a new user (patient or doctor) can be added to the postgres database.
+ * When a doctor is initialized, he/she is automatically added to the doctor_patient table 
+ */
     public static void testRegisterUser(){
 
 
@@ -91,6 +93,11 @@ public class HealthMonitoringApp {
     }
 
     
+    /**
+ * Tests some of the methods in the UserDAO class. 
+ * User information is updated by entering one value to be modified (email, first_name, last_name, etc.).
+ * A switch statement determines which value should be adjusted and handles the change accordingly. 
+ */
     public static void testUserMethods() 
     {
       PatientPortalDao patientDao = new PatientPortalDao(); 
@@ -101,9 +108,15 @@ public class HealthMonitoringApp {
       patientDao.updateUser("email", "newemail@gmail.com", user2); 
       patientDao.updateUser("last_name", "NewName", user3); 
       patientDao.updateUser("hello", "new data", user3); 
+
     }
 
 
+        /**
+ * Tests that a user is able to log into the health system by taking in an EMAIL and PASSWORD
+ * An incorrect email or password will result in an error message. 
+ * Otherwise, the user will receive a success message. 
+ */
     public static boolean testLoginUser() {
         
       String email; 
@@ -143,6 +156,9 @@ public class HealthMonitoringApp {
     }
 
 
+        /**
+ * Tests that a health data object is successfully added to the health_data table. 
+ */
     public static void testAddHealthData() {
 
       HealthDataDao healthDataDao = new HealthDataDao(); 
@@ -164,6 +180,10 @@ public class HealthMonitoringApp {
     }
 
 
+        /**
+ * Tests that the system can obtain a health data record by ID and generate recommendations depending on the data stored. 
+ * Generates recommendations for heart rate, daily steps and user's BMI. 
+ */
     public static void testGenerateRecommendations(){
 
       RecommendationSystem recSystem = new RecommendationSystem(); 
@@ -217,6 +237,12 @@ public class HealthMonitoringApp {
     }
 
 
+        /**
+ * Tests that a medicine reminder can be saved to the medicine_reminders table. 
+ * The MedicineReminderManager class has two important methods: 
+ * 1. getRemindersForUser - fetches ALL reminders for a user (takes in the User ID as a parameter)
+ * 2. getDueRemindersForUser - fetches all DUE reminders for a user (takes in the User ID as a parameter)
+ */
     public static void testAddMedicineReminder(){
 
       MedicineReminderManager medRemManager = new MedicineReminderManager(); 
@@ -261,6 +287,12 @@ public class HealthMonitoringApp {
 
 
 
+        /**
+ * Tests the functionality of the DoctorPortalDao class. 
+ * 1. addPatientToDoctorList - adds a patient to a doctor list. 
+ * 2. getPatientsByDoctorId - generates a list of the doctor's patients 
+ * 3. getHealthDataByPatientId - fetches all the health data saved for a particular patient. 
+ */
     public static void testDoctorPortal() {
      
         DoctorPortalDao doctorDao = new DoctorPortalDao(); 

@@ -50,6 +50,11 @@ public class Doctor extends User{
 
     // toString Method 
     @Override
+    /**
+     * Method - toString
+     * @return Doctor ID # : FirstName XXXXXX LastName XXXXXXX, Email: XX@XX.XX
+     * Specialization: XXXXXXX, Medical License Number: XXXXXXX 
+     */
     public String toString()
     {
         return ("Doctor " + this.getId() + ":" + this.getFirstName() + " " + this.getLastName() + ", Email: " + this.getEmail() + ", Specialization: " + this.specialization + ", Medical License Number: " + this.medicalLicenseNumber); 

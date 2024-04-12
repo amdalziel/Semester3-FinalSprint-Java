@@ -5,6 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+/**
+ * Blueprint for MedicineReminder object - id, userId, medicine name, dosage, schedule, start date and end date. 
+ * @author Amy Dalziel
+ */
 public class MedicineReminder {
     private int id;
     private int userId;
@@ -106,6 +110,12 @@ public class MedicineReminder {
 
 
     // toString Method 
+    /**
+     * Method - toString
+     * @return Method Reminder ID # for User XX
+     * Medicine Name: XXXXXXXX, Dosage: XXXXX
+     * Schedule: XXXXXX, Start Date: YYYY-MM-DD, End Date: YYYY-MM-DD
+     */
 
     public String toString()
     {

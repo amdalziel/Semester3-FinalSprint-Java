@@ -9,7 +9,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Blueprint for the MedicineReminderManager object. 
+ * Contains methods to add reminders, edit reminders and display reminders by (a) ALL reminders for a user 
+ * or (b) DUE reminders for a user 
+ * @author Amy Dalziel 
+ */
 public class MedicineReminderManager {
 
     private List<MedicineReminder> reminders;

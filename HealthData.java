@@ -104,6 +104,13 @@ public class HealthData {
     }
 
 
+    /**
+     * Method - toString
+     * @return Health Data ID # for User: XX
+     * Weight: XXXXX, Height: XXXX
+     * Steps: XXXXXXX, Heart Rate: XXXX
+     * Date: YYYY-MM-DD
+     */
     public String toString()
     {
         return ("Health Data " + this.getHealthDataId() + " for User: " + this.getUserId() + "\n" + // 

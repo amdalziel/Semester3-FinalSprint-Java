@@ -5,6 +5,12 @@ import java.sql.SQLException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ * Blueprint for Patient Portal Decentralized Autonomous Organization object. 
+ * Extends the UserAao class. 
+ * Overrides the User class 'createUser' method  
+ * @author Amy Dalziel
+ */
 public class PatientPortalDao extends UserDao {
 
     // Attributes 
@@ -30,6 +36,11 @@ public class PatientPortalDao extends UserDao {
 
 
     @Override
+    /**
+     * Overrides the 'createUser' method from the UserDao class. 
+     * Automatically sets the boolean is_doctor to FALSE 
+     * Does not contain the parameters that are only relevant to doctor (specialization, medical license number)
+     */
     public <T> boolean createUser(T user) {
 
         boolean bool = false;

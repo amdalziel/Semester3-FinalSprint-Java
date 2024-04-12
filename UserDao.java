@@ -3,6 +3,12 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Blueprint for a User Decentralized Autonomous Organization object. 
+ * This class is extended by the Patient and the Doctor class.
+ * @author Amy Dalziel
+ * 
+ */
 public class UserDao {
    
     // Method for creating a user - this is overridden in both the Patient and Doctor DAO classes. 
@@ -125,7 +131,20 @@ public class UserDao {
 
     }
 
-
+/**
+ * Update User Method: 
+ * Takes in three parameters: 
+ * 1. String selection (user must enter a column name from the user table - otherwise the default will display an error message)
+ * 2. <T> value - the new (updated) value given by the user. 
+ * Since the variable type (String, int, boolean, etc.) could vary, this has been created as a generic class
+ * 3. User user - used to determine which user will be updated. 
+ * 
+ * @param <T>
+ * @param selection
+ * @param value
+ * @param user
+ * @return 
+ */
     public <T> boolean updateUser(String selection, T value, User user) {
 
         Boolean bool = false; 
@@ -271,6 +290,7 @@ public class UserDao {
 
         return bool; 
     }
+
 
 
     public boolean verifyPassword (int id, String p)

@@ -1,3 +1,9 @@
+
+/**
+ * Blueprint for the Patient object. 
+ * Extends the User class. 
+ * @author Amy Dalziel 
+ */
 public class Patient extends User {
     
     // Attributes 
@@ -24,12 +30,14 @@ public class Patient extends User {
 
     // toString Method 
     @Override
+   /**
+     * Method - toString
+     * @return User ID # : FirstName XX LastName XX, Email: XX@XX.XX, Doctor: XX 
+     */
     public String toString()
     {
         return (super.toString() + ", Doctor: " + this.getDoctorId()); 
     }
-
-
 
     
 }

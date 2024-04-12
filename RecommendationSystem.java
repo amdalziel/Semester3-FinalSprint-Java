@@ -16,6 +16,15 @@ public class RecommendationSystem {
     private static final double OVERWEIGHT_BMI = 25.00; 
     private static final double UNDERWEIGHT_BMI = 18.5; 
 
+    /**
+     * Blueprint for a system to generate and save (to a Postgres Database) recommendations based on health data for a patient. 
+     * 1. Calculates the BMI of a patient and gives feedback depending on their results (underweight, healthy weight, overweight)
+     * 2. Determines if a patient is getting the recommended number of daily steps - and provides feedback if not 
+     * 3. Determines if the patient has a heart rate under OR over the recommended range - and provides feedaback if not in the healthy range
+     * @param healthData
+     * @return
+     * @author Amy Dalziel 
+     */
     public List<String> generateRecommendations(HealthData healthData) {
         List<String> recommendations = new ArrayList<>();
         int id = 0; 

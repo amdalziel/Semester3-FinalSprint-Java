@@ -4,6 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Blueprint for a User object - id, first name, last name, email, password. 
+ * Patient class and Doctor class extends this User class. 
+ * @author Amy Dalziel 
+ */
 public class User {
 
     // Attributes 
@@ -74,6 +79,10 @@ public class User {
     }
 
     // toString Method 
+    /**
+     * Method - toString
+     * @return User ID # : FirstName XXXXXXXXXX LastName XXXXXXXXXX, Email: XX@XX.XX
+     */
     public String toString()
     {
         return ("User " + this.id + ":" + this.firstName + " " + this.lastName + ", Email: " + this.email); 
