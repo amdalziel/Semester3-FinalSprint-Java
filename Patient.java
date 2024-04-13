@@ -10,6 +10,7 @@ public class Patient extends User {
     private Boolean isDoctor; 
     private int doctorId; 
 
+
     // Constructor Method - uses values from the User Class 
     public Patient(int id, String firstName, String lastName, String email, String password) {
         super(id, firstName, lastName, email, password); 

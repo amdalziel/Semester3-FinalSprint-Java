@@ -23,8 +23,8 @@ public class HealthMonitoringApp {
 
 
         // Test 1: Register a new user
-        // testRegisterUser(); 
-        testUserMethods(); 
+        testRegisterUser(); 
+        // testUserMethods(); 
 
         // Test 2: Log in a user 
         // testLoginUser(); 

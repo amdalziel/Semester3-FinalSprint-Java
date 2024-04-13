@@ -18,7 +18,7 @@ public class User {
     private String email;
     private String password;
 
-    // Constructor Method 
+    // Default Constructor Method 
     public User() {
         this.id = (Integer) null; 
         this.firstName = null;
@@ -27,7 +27,7 @@ public class User {
         this.password = null;
     }
 
-    // Constructor Method (takes in values from the user)
+    // Parameterized Constructor Method (takes in values from the user)
     public User(int id, String firstName, String lastName, String email, String password) {
 
         this.id = id; 
