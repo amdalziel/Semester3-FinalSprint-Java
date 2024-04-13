@@ -33,6 +33,7 @@ public class HealthDataDao {
  
              int updatedRows = statement.executeUpdate();
              if (updatedRows != 0) {
+                System.out.println("Success - Health Data for User " + h.getUserId() + " has been added to the health_data table.");
                  bool = true;
          }
      } catch(SQLException e)

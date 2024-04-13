@@ -72,6 +72,7 @@ public class DoctorPortalDao extends UserDao {
             doctorPatientStatement.setInt(2, 1); 
             doctorPatientStatement.executeUpdate(); 
             
+            System.out.println("Success - Doctor " + d.getFirstName() + " " + d.getLastName() + " has been added to the Users and doctor_patient table.");
             bool = true;
 
         }
@@ -121,7 +122,6 @@ public class DoctorPortalDao extends UserDao {
 
     } catch(SQLException e)
         {
-            System.out.println("Error: "); 
             e.printStackTrace();
         }
 
@@ -160,7 +160,6 @@ public class DoctorPortalDao extends UserDao {
 
     } catch(SQLException e)
         {
-            System.out.println("Error: "); 
             e.printStackTrace();
         }
 
@@ -207,7 +206,6 @@ public class DoctorPortalDao extends UserDao {
 
     } catch(SQLException e)
         {
-            System.out.println("Error: "); 
             e.printStackTrace();
         }
 
@@ -284,7 +282,7 @@ public class DoctorPortalDao extends UserDao {
             int updatedRows = statement.executeUpdate();
             if (updatedRows != 0) {
 
-            System.out.println("Success - Patient " + p.getId() + "deleted from the system."); 
+            System.out.println("Success - Patient " + p.getId() + " deleted from the system."); 
             bool = true;
         }
     } catch(SQLException e)

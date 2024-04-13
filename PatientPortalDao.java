@@ -71,6 +71,7 @@ public class PatientPortalDao extends UserDao {
             int updatedRows = statement.executeUpdate();
             if (updatedRows != 0) {
      
+                System.out.println("Success - Patient " + p.getFirstName() + " " + p.getLastName() + " has been added to the Users table.");
             bool = true;
 
         }

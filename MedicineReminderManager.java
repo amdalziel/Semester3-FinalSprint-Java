@@ -104,7 +104,7 @@ public class MedicineReminderManager {
     }
 
 
-    // Add enumeration - different values depending on how overdue it is?? 
+    
 
     public List<MedicineReminder> getDueRemindersForUser(int uId) {
 

@@ -23,7 +23,7 @@ public class HealthMonitoringApp {
 
 
         // Test 1: Register a new user
-        testRegisterUser(); 
+        // testRegisterUser(); 
         // testUserMethods(); 
 
         // Test 2: Log in a user 
@@ -42,7 +42,7 @@ public class HealthMonitoringApp {
         // testAddMedicineReminder(); 
 
         // Test 8: Test the Doctor Portal 
-        // testDoctorPortal(); 
+        testDoctorPortal(); 
 
 
 
@@ -123,6 +123,7 @@ public class HealthMonitoringApp {
       String password; 
 
       Scanner input = new Scanner(System.in); 
+
       System.out.println("Enter your email: "); 
       email = input.nextLine(); 
 
@@ -210,6 +211,7 @@ public class HealthMonitoringApp {
         
       }
     
+      System.out.println();
       
       System.out.println("Recommendation for Health Data ID 2: "); 
       if (rec2.size() == 0) {
@@ -222,6 +224,7 @@ public class HealthMonitoringApp {
         
       }
 
+      System.out.println();
 
       System.out.println("Recommendation for Health Data ID 3: "); 
       if (rec3.size() == 0) {
@@ -233,6 +236,8 @@ public class HealthMonitoringApp {
         }
         
       }
+
+      System.out.println();
 
     }
 
@@ -269,9 +274,11 @@ public class HealthMonitoringApp {
         for(MedicineReminder reminder : allRem) 
         {
           System.out.println(reminder); 
+          System.out.println(); 
         }
       }
 
+      System.out.println(); 
 
       System.out.println("DUE reminders: "); 
       if (dueRem.size() == 0) {
@@ -280,8 +287,11 @@ public class HealthMonitoringApp {
         for(MedicineReminder reminder : dueRem) 
         {
           System.out.println(reminder); 
+          System.out.println(); 
         }
       }
+
+      System.out.println(); 
 
     }
 
@@ -314,7 +324,7 @@ public class HealthMonitoringApp {
 
 
       System.out.println("Patients for Doctor with ID 7: "); 
-      if (listPat.size() == 0) {
+      if (listPat.size() == 1) {
         System.out.println("No patients recorded."); 
       } else {
         for(User patient : listPat) 
@@ -322,6 +332,8 @@ public class HealthMonitoringApp {
           System.out.println(patient); 
         }
       }
+
+      System.out.println(); 
 
       List<HealthData> listHealthD = doctorDao.getHealthDataByPatientId(2); 
 
