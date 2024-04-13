@@ -11,6 +11,11 @@ import java.time.LocalDate;
  */
 public class UserDao {
    
+    
+    /** 
+     * @param user
+     * @return boolean
+     */
     // Method for creating a user - this is overridden in both the Patient and Doctor DAO classes. 
     public <T> boolean createUser(T user) {
 
